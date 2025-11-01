@@ -32,3 +32,13 @@ jobs:
 
         run: |
           pytest --maxfail=1 --disable-warnings -v --html=report.html
+
+      - name: Upload test report, screenshots, and logs
+        if: always()  # ensures upload even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: |
+            report.html
+            screenshots/
+            logs/
